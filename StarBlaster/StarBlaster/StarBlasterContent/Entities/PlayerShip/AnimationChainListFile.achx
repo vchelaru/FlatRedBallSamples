@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AnimationChainArraySave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FileRelativeTextures>true</FileRelativeTextures>
+  <TimeMeasurementUnit>Undefined</TimeMeasurementUnit>
+  <CoordinateType>Pixel</CoordinateType>
+  <AnimationChain>
+    <Name>MainPlayer</Name>
+    <ColorKey>0</ColorKey>
+    <Frame>
+      <TextureName>..\..\globalcontent\entities.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1764</LeftCoordinate>
+      <RightCoordinate>1812</RightCoordinate>
+      <TopCoordinate>1082</TopCoordinate>
+      <BottomCoordinate>1123</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>LeftGun</Name>
+    <ColorKey>0</ColorKey>
+    <Frame>
+      <TextureName>..\..\globalcontent\entities.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1744</LeftCoordinate>
+      <RightCoordinate>1757</RightCoordinate>
+      <TopCoordinate>1087</TopCoordinate>
+      <BottomCoordinate>1115</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+  <AnimationChain>
+    <Name>RightGun</Name>
+    <ColorKey>0</ColorKey>
+    <Frame>
+      <TextureName>..\..\globalcontent\entities.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>1820</LeftCoordinate>
+      <RightCoordinate>1833</RightCoordinate>
+      <TopCoordinate>1087</TopCoordinate>
+      <BottomCoordinate>1115</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+</AnimationChainArraySave>

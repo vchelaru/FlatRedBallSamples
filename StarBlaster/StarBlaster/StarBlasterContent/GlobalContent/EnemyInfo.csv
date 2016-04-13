@@ -1,0 +1,5 @@
+"Name (string, required)",Health (int),AnimationChain (string),AlwaysFaceUp (bool),MovementSpeed (float)
+Regular,4,Regular,false,250
+Big,10,Big,true,150
+ExtraBig,25,ExtraBig,true,100
+Boss,100,Boss,true,50

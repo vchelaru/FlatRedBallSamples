@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AnimationChainArraySave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <FileRelativeTextures>true</FileRelativeTextures>
+  <TimeMeasurementUnit>Undefined</TimeMeasurementUnit>
+  <CoordinateType>Pixel</CoordinateType>
+  <AnimationChain>
+    <Name>Sun</Name>
+    <ColorKey>0</ColorKey>
+    <Frame>
+      <TextureName>..\..\globalcontent\entities.png</TextureName>
+      <FrameLength>0.1</FrameLength>
+      <LeftCoordinate>15</LeftCoordinate>
+      <RightCoordinate>1223</RightCoordinate>
+      <TopCoordinate>47</TopCoordinate>
+      <BottomCoordinate>1474</BottomCoordinate>
+    </Frame>
+  </AnimationChain>
+</AnimationChainArraySave>
