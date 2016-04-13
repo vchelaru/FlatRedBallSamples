@@ -11,3 +11,4 @@ StarBlaster/StarBlaster/StarBlaster/obj/
 *.csvSettings
 *.splsetx
 StarBlaster/StarBlaster/StarBlasterContent/obj/
+*.cache
