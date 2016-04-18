@@ -19,6 +19,9 @@ using FlatRedBall.Localization;
 using StarBlaster.Entities;
 using StarBlaster.Factories;
 using StarBlaster.DataTypes;
+using OcularPlane;
+using OcularPlane.Networking.WcfTcp.Host;
+using System.Collections.Specialized;
 
 #if FRB_XNA || SILVERLIGHT
 using Keys = Microsoft.Xna.Framework.Input.Keys;
@@ -37,34 +40,60 @@ namespace StarBlaster.Screens
             // We'll handle it ourselves since we will have enemy and player bullets
             BulletFactory.ScreenListReference = null;
 
+            this.PlayerShipList.CollectionChanged += HandleCollectionChanged;
+
             CreatePlayer();
 
             AddEnemySpawning();
 
             CalculateSplineValues();
+
+        }
+
+        private void HandleCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (var item in e.NewItems)
+                {
+                    containerManager.AddObjectToContainer(nameof(GameScreen),
+                        item, nameof(ExplosionInstance));
+                }
+            }
         }
 
         private void AddEnemySpawning()
         {
-            CreateEnemyShips(
-                spline:SplinePaths[0],
-                count:5, 
-                delay:3, 
-                enemyInfo:GlobalContent.EnemyInfo[EnemyInfo.Regular]);
+            var values = new EnemyCreationValues();
+            //values.Spline = SplinePaths.Find(item=>item.Name == "LtoRLoop");
+            //values.Count = 5;
+            //values.Delay = 3;
+            //values.EnemyInfo = GlobalContent.EnemyInfo[EnemyInfo.Regular];
 
-            CreateEnemyShips(
-                spline: SplinePaths[0],
-                count: 5,
-                delay: 13,
-                enemyInfo: GlobalContent.EnemyInfo[EnemyInfo.Regular]);
-
-            CreateEnemyShips(
-                spline: SplinePaths[0],
-                count: 1,
-                delay: 20,
-                enemyInfo: GlobalContent.EnemyInfo[EnemyInfo.Big]);
+            //CreateEnemyShips(values);
 
 
+            //for(int i = 0; i < 10; i++)
+            //{
+            //    values = new EnemyCreationValues();
+            //    values.Spline = SplinePaths.Find(item=>item.Name == "DownThenUp");
+            //    values.Count = 1;
+            //    values.Delay = 10 + i/2.0f;
+            //    values.EnemyInfo = GlobalContent.EnemyInfo[EnemyInfo.Regular];
+            //    values.Offset = new Vector3(-300 + i * 600 / 10, 0, 0);
+
+            //    CreateEnemyShips(values);
+
+            //}
+
+            values = new EnemyCreationValues();
+            values.Delay = 1;
+            //values.Delay = 15;
+            values.EnemyInfo = GlobalContent.EnemyInfo[EnemyInfo.ExtraBig];
+            values.Spline = SplinePaths.Find(item => item.Name == "LeftToRight");
+            values.SplinePointToLoopTo = 2;
+            values.Count = 1;
+            CreateEnemyShips(values);
 
         }
 
@@ -182,11 +211,11 @@ namespace StarBlaster.Screens
 
         }
 
-        void CreateEnemyShips(Spline spline, int count, float delay, EnemyInfo enemyInfo, float timeSeparation = .5f)
+        void CreateEnemyShips(EnemyCreationValues values)
         {
            this.Call(() =>
            {
-               for (int i = 0; i < count; i++)
+               for (int i = 0; i < values.Count; i++)
                {
                    this.Call(() =>
                    {
@@ -194,13 +223,15 @@ namespace StarBlaster.Screens
                         // Move it off screen, it'll adjust its positing
                         // in its custo activity using the spline
                        enemyShip.X = -10000;
-                       enemyShip.SplineFollowing = spline;
-                       enemyShip.EnemyInfo = enemyInfo;
+                       enemyShip.SplinePointToLoopTo = values.SplinePointToLoopTo;
+                       enemyShip.SplineOffset = values.Offset;
+                       enemyShip.SplineFollowing = values.Spline;
+                       enemyShip.EnemyInfo = values.EnemyInfo;
                    })
-                   .After(i * timeSeparation);
+                   .After(i * values.TimeSeparation);
 
                }
-           }).After(delay);
+           }).After(values.Delay);
         }
 
         public void CreatePlayer()

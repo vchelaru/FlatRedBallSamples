@@ -35,11 +35,26 @@ namespace StarBlaster.Entities
 
         float distanceMoved;
 
+        public Vector3 SplineOffset;
 
         public Spline SplineFollowing
         {
             get;
             set;
+        }
+
+        public int? SplinePointToLoopTo
+        {
+            get;
+            set;
+        }
+
+        bool IsAtEndOfSpline
+        {
+            get
+            {
+                return distanceMoved >= SplineFollowing.Length;
+            }
         }
 
 
@@ -58,7 +73,26 @@ namespace StarBlaster.Entities
 		{
             MovementActivity();
 
+            if(IsAtEndOfSpline)
+            {
+                PerformEndOfSplineActivity();
+            }
+
 		}
+
+        private void PerformEndOfSplineActivity()
+        {
+            if (SplinePointToLoopTo == null)
+            {
+                this.Destroy();
+            }
+            else
+            {
+                var point = SplineFollowing[SplinePointToLoopTo.Value];
+
+                this.distanceMoved = (float)SplineFollowing.GetLengthAtTime(point.Time);
+            }
+        }
 
         public void TakeDamage(int amountOfDamage)
         {
@@ -122,7 +156,7 @@ namespace StarBlaster.Entities
 
             if(SplineFollowing != null)
             {
-                return SplineFollowing.GetPositionAtLengthAlongSpline(distanceMoved);
+                return SplineFollowing.GetPositionAtLengthAlongSpline(distanceMoved) + SplineOffset;
 
             }
             else

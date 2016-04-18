@@ -593,6 +593,24 @@
           <GenerateTimedEmit>true</GenerateTimedEmit>
           <IndependentOfCamera>true</IndependentOfCamera>
         </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>File</SourceType>
+          <SourceFile>Screens/GameScreen/SplinePaths.splx</SourceFile>
+          <SourceName>DownThenUp (Spline)</SourceName>
+          <InstanceName>DownThenUp</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
+        <NamedObjectSave>
+          <SourceType>File</SourceType>
+          <SourceFile>Screens/GameScreen/SplinePaths.splx</SourceFile>
+          <SourceName>LtoRLoop (Spline)</SourceName>
+          <InstanceName>LtoRLoop</InstanceName>
+          <AttachToContainer>true</AttachToContainer>
+          <GenerateTimedEmit>true</GenerateTimedEmit>
+          <IndependentOfCamera>true</IndependentOfCamera>
+        </NamedObjectSave>
       </NamedObjects>
     </ScreenSave>
   </Screens>
@@ -683,6 +701,19 @@
           <Name>SecondsPerCycle</Name>
           <Type>float</Type>
           <DefaultValue xsi:type="xsd:float">25</DefaultValue>
+        </CustomVariable>
+        <CustomVariable>
+          <Properties>
+            <PropertySave>
+              <Name>Type</Name>
+              <ValueAsString>float</ValueAsString>
+            </PropertySave>
+          </Properties>
+          <Name>SpriteInstanceTextureScale</Name>
+          <Type>float</Type>
+          <DefaultValue xsi:type="xsd:float">1</DefaultValue>
+          <SourceObject>SpriteInstance</SourceObject>
+          <SourceObjectProperty>TextureScale</SourceObjectProperty>
         </CustomVariable>
       </CustomVariables>
       <Name>Entities\Background</Name>
